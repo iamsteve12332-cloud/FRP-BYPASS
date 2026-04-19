@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Права администратора подтянутся из манифеста -->
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>AnyCPU;x64</Platforms>
+    <ApplicationIcon>icon.ico</ApplicationIcon> <!-- Если есть иконка -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Библиотека для работы с портами и USB -->
+    <PackageReference Include="System.Management" Version="8.0.0" />
+    <!-- Опционально: для более глубокой работы с USB как в SamFw -->
+    <PackageReference Include="LibUsbDotNet" Version="2.2.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Инструкция копировать adb в папку с программой автоматически -->
+    <None Update="platform-tools\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
